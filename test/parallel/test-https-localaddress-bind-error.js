@@ -1,12 +1,7 @@
 var common = require('../common');
 var assert = require('assert');
-var fs = require('fs');
-
-if (!common.hasCrypto) {
-  console.log('1..0 # Skipped: missing crypto');
-  process.exit();
-}
 var https = require('https');
+var fs = require('fs');
 
 var options = {
   key: fs.readFileSync(common.fixturesDir + '/keys/agent1-key.pem'),

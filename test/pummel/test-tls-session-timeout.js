@@ -5,11 +5,6 @@ if (!common.opensslCli) {
   process.exit(0);
 }
 
-if (!common.hasCrypto) {
-  console.log('1..0 # Skipped: missing crypto');
-  process.exit();
-}
-
 doTest();
 
 // This test consists of three TLS requests --

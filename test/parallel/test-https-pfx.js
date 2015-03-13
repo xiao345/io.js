@@ -1,12 +1,7 @@
 var common = require('../common');
 var assert = require('assert');
-var fs = require('fs');
-
-if (!common.hasCrypto) {
-  console.log('1..0 # Skipped: missing crypto');
-  process.exit();
-}
 var https = require('https');
+var fs = require('fs');
 
 var pfx = fs.readFileSync(common.fixturesDir + '/test_cert.pfx');
 

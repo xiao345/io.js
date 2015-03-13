@@ -2,11 +2,12 @@ var common = require('../common');
 var assert = require('assert');
 var domain = require('domain');
 
-if (!common.hasCrypto) {
-  console.log('1..0 # Skipped: missing crypto');
-  process.exit();
+try {
+  var crypto = require('crypto');
+} catch (e) {
+  console.log('Skipping test, compiled without crypto support.');
+  return;
 }
-var crypto = require('crypto');
 
 function test(fn) {
   var ex = new Error('BAM');

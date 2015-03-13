@@ -10,13 +10,8 @@ if (!common.opensslCli) {
   process.exit(0);
 }
 
-if (!common.hasCrypto) {
-  console.log('1..0 # Skipped: missing crypto');
-  process.exit();
-}
-var tls = require('tls');
-
 var assert = require('assert');
+var tls = require('tls');
 var constants = require('constants');
 var fs = require('fs');
 var join = require('path').join;

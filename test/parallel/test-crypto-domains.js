@@ -1,15 +1,9 @@
-var common = require('../common');
+var crypto = require('crypto');
 var domain = require('domain');
 var assert = require('assert');
 var d = domain.create();
 var expect = ['pbkdf2', 'randomBytes', 'pseudoRandomBytes']
 var errors = 0;
-
-if (!common.hasCrypto) {
-  console.log('1..0 # Skipped: missing crypto');
-  process.exit();
-}
-var crypto = require('crypto');
 
 process.on('exit', function() {
   assert.equal(errors, 3);

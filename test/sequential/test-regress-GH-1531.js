@@ -1,13 +1,12 @@
-var common = require('../common');
-var assert = require('assert');
-
-if (!common.hasCrypto) {
-  console.log('1..0 # Skipped: missing crypto');
-  process.exit();
+if (!process.versions.openssl) {
+  console.error('Skipping because node compiled without OpenSSL.');
+  process.exit(0);
 }
-var https = require('https');
 
+var https = require('https');
+var assert = require('assert');
 var fs = require('fs');
+var common = require('../common');
 
 var options = {
   key: fs.readFileSync(common.fixturesDir + '/keys/agent1-key.pem'),
@@ -43,3 +42,4 @@ process.on('exit', function() {
   assert.ok(gotCallback);
   console.log('ok');
 });
+

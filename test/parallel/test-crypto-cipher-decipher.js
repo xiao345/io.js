@@ -1,11 +1,12 @@
 var common = require('../common');
 var assert = require('assert');
 
-if (!common.hasCrypto) {
-  console.log('1..0 # Skipped: missing crypto');
+try {
+  var crypto = require('crypto');
+} catch (e) {
+  console.log('Not compiled with OPENSSL support.');
   process.exit();
 }
-var crypto = require('crypto');
 
 function testCipher1(key) {
   // Test encryption and decryption

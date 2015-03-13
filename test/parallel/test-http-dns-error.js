@@ -2,12 +2,7 @@ var common = require('../common');
 var assert = require('assert');
 
 var http = require('http');
-
-if (common.hasCrypto) {
-  var https = require('https');
-} else {
-  console.log('1..0 # Skipped: missing crypto');
-}
+var https = require('https');
 
 var expected_bad_requests = 0;
 var actual_bad_requests = 0;
@@ -43,14 +38,10 @@ function test(mod) {
   req.end();
 }
 
-if (common.hasCrypto) {
-  test(https);
-} else {
-  console.log('1..0 # Skipped: missing crypto');
-}
-
+test(https);
 test(http);
 
 process.on('exit', function() {
   assert.equal(actual_bad_requests, expected_bad_requests);
 });
+
