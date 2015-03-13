@@ -2,21 +2,13 @@ var assert = require('assert');
 var common = require('../common');
 var tls = require('tls');
 
-function Done() {}
-
 function test1() {
   var ciphers = '';
-
   tls.createSecureContext = function(options) {
-    ciphers = options.ciphers;
-    throw new Done();
+    ciphers = options.ciphers
   }
-
-  try {
-    var s = tls.connect(common.PORT);
-  } catch (e) {
-    assert(e instanceof Done);
-  }
+  var s = tls.connect(common.PORT);
+  s.destroy();
   assert.equal(ciphers, tls.DEFAULT_CIPHERS);
 }
 test1();
